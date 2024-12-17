@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <fstream>
 #include <string>
 using namespace std;
 
@@ -11,6 +12,8 @@ int RNG(string charSet);
 
 int main()
 {
+    ofstream outputFile;
+    outputFile.open("passwords.txt");
     //Initializes random number with the current time.
     srand(time(0));
     //Created all possible characters for the password.
@@ -42,11 +45,12 @@ int main()
         else if(passOption == 2)
         {
             //Prints out all the passwords in the storage.
-            cout << "\n Your Passwords: \n";
+            outputFile << " Your Passwords: \n";
             for(int i = 0; i < passwordList.size(); i++)
             {
-                cout << i+1 << ". " << passwordList[i] << endl;
+                outputFile << i+1 << ". " << passwordList[i] << endl;
             }
+            cout << "\nSee output file for your passwords." << endl;
         }
         else if(passOption == 3)
         {
