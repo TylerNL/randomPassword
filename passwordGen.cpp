@@ -2,6 +2,7 @@
 #include <random>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 #include <string>
 using namespace std;
 
@@ -20,13 +21,44 @@ int main()
     //Add them up to make a collection of all possible characters that could be in the password.
     string allSet = numSet + lowerLetterSet + upperLetterSet + symbolSet;
 
+    //Creates a password list.
+    vector<string> passwordList;
+
     //Gets user input on how long they want their password to be.
-    int passwordLength;
-    cout << "Enter your desired password length\n";
-    cin >> passwordLength;
-    string newPass = passwordGen(passwordLength, allSet);
-    //Prints out randomized password.
-    cout << "Your randomized password: " << newPass << endl;
+    string newPass;
+    int passwordLength, passOption;
+    do{
+        cout << "\n Menu: (Pick a corresponding number)\n";
+        cout << "1. Generate new password\n" << "2. Show stored passwords\n" << "3.Exit \n";
+        cin >> passOption;
+        if(passOption == 1)
+        {
+            cout << "Enter your desired password length." << endl;
+            cin >> passwordLength;
+            newPass = passwordGen(passwordLength, allSet);
+            cout << "\nYour randomized password: " << newPass << endl;
+            passwordList.push_back(newPass);
+        }
+        else if(passOption == 2)
+        {
+            //Prints out all the passwords in the storage.
+            cout << "\n Your Passwords: \n";
+            for(int i = 0; i < passwordList.size(); i++)
+            {
+                cout << i+1 << ". " << passwordList[i] << endl;
+            }
+        }
+        else if(passOption == 3)
+        {
+            exit(1);
+        }
+        else
+        {
+            cerr << "Not an option.";
+            exit(1);
+        }
+    }while(passwordLength != -1);
+    
 
     return 0;
 }

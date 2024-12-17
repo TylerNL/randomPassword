@@ -1,1 +1,2 @@
 Dec 16: Tyler created this project.
+Dec 17: Added more options for user. Added option to either generate a new password, read the stored passwords, or exit.
